@@ -8,3 +8,7 @@ class MedicoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medico
         fields = '__all__'
+        extra_kwargs = {
+            'email': {'write_only': True},
+            'telefone': {'write_only': True}
+        }

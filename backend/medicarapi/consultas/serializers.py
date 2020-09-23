@@ -1,7 +1,9 @@
 from rest_framework import serializers
 from .models import Consulta
 from datetime import date, datetime
+from medicarapi.medicos.models import Medico
 from medicarapi.medicos.serializers import MedicoSerializer
+from django.forms.models import model_to_dict
 
 class ConsultaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,20 +20,7 @@ class ConsultaSerializer(serializers.ModelSerializer):
 
         return value
 
-    # def validate_horario(self, value):
-    #     # print(value)
-    #     now = datetime.now()
-    #     current_time = datetime.strptime(now.strftime('%H:%M'), '%H:%M').time()
-    #     print(type(value))
-    #     print(type(current_time))
-    #     if value < current_time:
-    #         raise serializers.ValidationError('Horário inválido. Consultas apenas para horários a partir do atual.')
-    #
-    #     return value
-
-
     def create(self, validated_data):
-        print(validated_data)
         qs = Consulta.objects.all()
 
         consulta_dia = qs.filter(
@@ -52,3 +41,14 @@ class ConsultaSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('Uma consulta nesse horário já foi marcada. Tente outro horário')
 
         return super(ConsultaSerializer, self).create(validated_data)
+        # consulta = Consulta.objects.create(**validated_data)
+
+        # return consulta
+
+    def to_representation(self, instance):
+        ret = super(ConsultaSerializer, self).to_representation(instance)
+
+        medico = Medico.objects.get(pk=ret['medico'])
+        medico = MedicoSerializer(medico).data
+        ret['medico'] = medico
+        return ret
