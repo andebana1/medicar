@@ -43,9 +43,6 @@ class ConsultaSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('Uma consulta nesse horário já foi marcada. Tente outro horário')
 
         return super(ConsultaSerializer, self).create(validated_data)
-        # consulta = Consulta.objects.create(**validated_data)
-
-        # return consulta
 
     def to_representation(self, instance):
         ret = super(ConsultaSerializer, self).to_representation(instance)
