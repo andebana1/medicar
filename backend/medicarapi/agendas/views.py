@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from rest_framework import mixins, viewsets
+from rest_framework.response import Response
 from oauth2_provider.contrib.rest_framework.authentication import OAuth2Authentication
 from .serializers import AgendaSerializer
 from .models import Agenda
-from datetime import date
+from medicarapi.consultas.models import Consulta
+from datetime import date, datetime
 
 # Create your views here.
 
@@ -16,7 +18,6 @@ class AgendaView(
     viewsets.GenericViewSet
 ):
     authentication_classes = [OAuth2Authentication]
-    #queryset = Agenda.objects.all()
     serializer_class = AgendaSerializer
 
     def get_queryset(self):
@@ -32,3 +33,22 @@ class AgendaView(
         qs = qs if data_fim_query is None else qs.filter(dia__lte=data_fim_query)
 
         return qs.order_by('dia')
+
+    def list(self, request, *args, **kwargs):
+        qs = self.get_queryset()
+        serializer = AgendaSerializer(qs, many=True)
+        data = serializer.data
+        for i in range(len(data)):
+            agenda = serializer.data[i]
+            consultas = Consulta.objects.values_list('horario', flat=True).filter(agenda=agenda['id'])
+            if len(consultas) == len(agenda['horarios']):
+                data.pop(i)
+                continue
+
+            ctime = datetime.now().time()
+            agenda['horarios'] = [
+                horario for horario in agenda['horarios']
+                if datetime.strptime(horario, '%H:%M').time() not in consultas
+                and datetime.strptime(horario, '%H:%M').time() >= ctime
+            ]
+        return Response(data)

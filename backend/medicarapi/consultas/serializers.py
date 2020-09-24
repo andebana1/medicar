@@ -6,6 +6,7 @@ from medicarapi.medicos.serializers import MedicoSerializer
 from django.forms.models import model_to_dict
 
 class ConsultaSerializer(serializers.ModelSerializer):
+    horario = serializers.TimeField(format='%H:%M')
     class Meta:
         model = Consulta
         fields = '__all__'

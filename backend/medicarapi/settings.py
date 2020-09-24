@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'medicarapi.medicos',
     'medicarapi.agendas',
     'medicarapi.consultas',
+    'medicarapi.register',
     #third party packages
     'rest_framework',
     'oauth2_provider',

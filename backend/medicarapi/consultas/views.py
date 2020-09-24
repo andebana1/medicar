@@ -19,11 +19,21 @@ class ConsultaView(
     serializer_class = ConsultaSerializer
 
     def get_queryset(self):
-        return Consulta.objects.filter(usuario=self.request.user)
+        return Consulta.objects.filter(usuario=self.request.user).order_by('dia', 'horario')
 
     def create(self, request, *args, **kwargs):
         try:
             agenda = Agenda.objects.get(id=self.request.data['agenda_id'])
+            consultas_horarios = Consulta.objects.values_list('horario', flat=True).filter(agenda=self.request.data['agenda_id'])
+            if datetime.strptime(self.request.data['horario'], '%H:%M').time() in consultas_horarios:
+                return Response(
+                    {
+                        'horario': [
+                            'Esse horário não está disponível nessa agenda, pois já foi agendado por outro usuário'
+                        ]
+                    },
+                    status=status.HTTP_400_BAD_REQUEST
+                )
             self.request.data['dia'] = agenda.dia
             self.request.data['medico'] = agenda.medico.id
             self.request.data['agenda'] = agenda.id
@@ -81,3 +91,9 @@ class ConsultaView(
             )
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def update(self, request, *args, **kwargs):
+        return Response(
+            {'Indisponível'},
+            status=status.HTTP_404_NOT_FOUND
+        )

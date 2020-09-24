@@ -22,5 +22,6 @@ urlpatterns = [
     path('medicos/', include('medicarapi.medicos.urls')),
     path('agendas/', include('medicarapi.agendas.urls')),
     path('consultas/', include('medicarapi.consultas.urls')),
+    path('user/', include('medicarapi.register.urls')),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
 ]
