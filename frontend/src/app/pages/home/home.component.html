@@ -1,11 +1,35 @@
-<button mat-raised-button > Add column </button>
 <!-- <button mat-raised-button (click)="removeColumn()"> Remove column </button> -->
 <!-- <button mat-raised-button (click)="shuffle()"> Shuffle </button> -->
 
-<table mat-table [dataSource]="['a', 'b', 'c']" class="mat-elevation-z8">
-    <ng-container [matColumnDef]="column" *ngFor="let column of [1, 2, 3, 4]">
-        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-    </ng-container>
-</table>
+<div class="table-class">
+    <table mat-table [dataSource]="tableData" class="mat-elevation-z8">
+        <ng-container matColumnDef="especialidade">
+            <th mat-header-cell *matHeaderCellDef> ESPECIALIDADE </th>
+            <td mat-cell *matCellDef="let element"> {{element.medico.especialidade.especialidade}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef> PROFISSIONAL </th>
+            <td mat-cell *matCellDef="let element"> {{element.medico.nome}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dia">
+            <th mat-header-cell *matHeaderCellDef> DATA </th>
+            <td mat-cell *matCellDef="let element"> {{element.dia}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="horario">
+            <th mat-header-cell *matHeaderCellDef> HORA </th>
+            <td mat-cell *matCellDef="let element"> {{element.horario}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="button">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element"> <button>sksnas</button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
+        <tr mat-row *matRowDef="let row; columns: tableHeaders;"></tr>
+    </table>
+</div>
   

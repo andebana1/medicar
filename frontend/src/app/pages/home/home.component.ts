@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OperationsService } from '../../shared/operations.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public tableHeaders: string[] = ['especialidade', 'nome', 'dia', 'horario', 'button'];
+  public tableData: any[] = [];
+
+  constructor(private opService: OperationsService) { }
 
   ngOnInit(): void {
+    this.getConsultas();
+  }
+
+  getConsultas(){
+    this.opService.getConsultas().subscribe(
+      response=>{
+        this.tableData = response as any[];
+      },err=>{
+        this.tableData = [];
+      }
+    );
   }
 
 }

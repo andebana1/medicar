@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
   login(){
     this.userService.login(this.formLogin.value).subscribe(
       response=>{
-        console.log('response => ', response)
         this.userService.setToken(response);
         this.router.navigateByUrl('/home');
       }, error=>{

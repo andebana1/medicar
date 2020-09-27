@@ -31,7 +31,6 @@ export class UserService {
   }
 
   setToken(token_payload: any){
-    console.log('token pay: ', token_payload);
     return localStorage.setItem('token', JSON.stringify(token_payload));
   }
 
