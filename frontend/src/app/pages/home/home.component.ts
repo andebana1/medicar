@@ -9,6 +9,7 @@ import { OperationsService } from '../../shared/operations.service';
 export class HomeComponent implements OnInit {
 
   public tableHeaders: string[] = ['especialidade', 'nome', 'dia', 'horario', 'button'];
+  public groupedColumns: string[] = ['grouped'];
   public tableData: any[] = [];
 
   constructor(private opService: OperationsService) { }
