@@ -13,6 +13,7 @@ table {
     padding: 20px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-content: center;
     align-items: center;
 }
@@ -80,4 +81,21 @@ th.mat-header-cell{
 
 mat-icon {
     font-size: 20px;
+}
+
+.button-cancell{
+    color: #49B4BB;
+}
+
+.mat-button.button-cancell ::ng-deep .mat-button-focus-overlay {
+    background: none;
+}
+
+.btn-desconecta{
+    margin-left: 60px;
+    color: #49B4BB;
+}
+
+.mat-button.btn-desconecta ::ng-deep .mat-button-focus-overlay {
+    background: none;
 }

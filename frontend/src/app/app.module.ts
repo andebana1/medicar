@@ -15,6 +15,7 @@ import { OperationsService } from './shared/operations.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { RegisterComponent } from './pages/register/register.component';
+import { NovaConsultaComponent } from './pages/nova-consulta/nova-consulta.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RegisterComponent } from './pages/register/register.component';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
+    NovaConsultaComponent,
   ],
   imports: [
     BrowserModule,
