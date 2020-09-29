@@ -1,40 +1,37 @@
 <div class="container-row">
-    <div class="container-column">
-        <div>
-
-            <mat-label>
-                <img src="assets/logo-medicar.svg" />
-            </mat-label>
-            <form [formGroup]="formLogin">
-                <ng-template>Username</ng-template>
-                <mat-form-field appearance="outline">
-                    <mat-label>
-                        E-mail ou login
-                    </mat-label>
-                    <input matInput placeholder="E-mail ou login" formControlName="username" required>
-                    <mat-error *ngIf="formLogin.controls.username.hasError('required')">
-                        Campo obrigatório
-                    </mat-error>
-                </mat-form-field><br>
-                <ng-template>Senha</ng-template>
-                <mat-form-field appearance="outline">
-                    <mat-label>
-                        Senha
-                    </mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="password" required>
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                    <mat-error *ngIf="formLogin.controls.password.hasError('required')">
-                        Campo obrigatório
-                    </mat-error>
-                </mat-form-field>
-                <!-- <mat-checkbox style="color: #A8A8A8;">Lembrar minha senha</mat-checkbox> -->
-                <div class="buttons-style">
-                    <button mat-button class="criar-conta" [routerLink]="['/register']">Criar Conta</button>
-                    <button mat-button class="main-button" (click)="login()" type="submit" [disabled]="!formLogin.valid">Acessar</button>
-                </div>
-            </form>
-        </div>
+    <div class="form-login">
+        <mat-label>
+            <img src="assets/logo-medicar.svg" />
+        </mat-label>
+        <form [formGroup]="formLogin">
+            <ng-template>Username</ng-template>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    E-mail ou login
+                </mat-label>
+                <input matInput placeholder="E-mail ou login" formControlName="username" required>
+                <mat-error *ngIf="formLogin.controls.username.hasError('required')">
+                    Campo obrigatório
+                </mat-error>
+            </mat-form-field><br>
+            <ng-template>Senha</ng-template>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Senha
+                </mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="password" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="formLogin.controls.password.hasError('required')">
+                    Campo obrigatório
+                </mat-error>
+            </mat-form-field>
+            <!-- <mat-checkbox style="color: #A8A8A8;">Lembrar minha senha</mat-checkbox> -->
+            <div class="buttons-style">
+                <button mat-button class="criar-conta" [routerLink]="['/register']">Criar Conta</button>
+                <button mat-button class="main-button" (click)="login()" type="submit" [disabled]="!formLogin.valid">Acessar</button>
+            </div>
+        </form>
     </div>
 </div>
