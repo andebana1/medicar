@@ -1,66 +1,67 @@
 <div class="container-row">
     <div class="container-column">
-        <div>
-            <mat-label>
-                <a [routerLink]="['/login']">
-                    <img src="assets/logo-medicar.svg" />
-                </a><br>
-                <span class="fontSpan">Crie sua conta</span>
-            </mat-label>
-            <form [formGroup]="formRegister" style="width: 100%;">
-                <ng-template>Username</ng-template>
-                <mat-form-field appearance="outline">
-                    <mat-label>
-                        Nome
-                    </mat-label>
-                    <input matInput placeholder="Nome" formControlName="username" required>
-                    <mat-error *ngIf="formRegister.controls.username.hasError('required')">
-                        Campo obrigatório
-                    </mat-error>
-                </mat-form-field><br>
-                <mat-form-field appearance="outline">
-                    <mat-label>
-                        Email
-                    </mat-label>
-                    <input matInput placeholder="Email" formControlName="email" required>
-                    <mat-error *ngIf="formRegister.controls.email.hasError('required')">
-                        Campo obrigatório
-                    </mat-error>
-                    <mat-error *ngIf="formRegister.controls.email.hasError('email')">
-                        Email inválido
-                    </mat-error>
-                </mat-form-field><br>
-                <ng-template>Senha</ng-template>
-                <mat-form-field appearance="outline">
-                    <mat-label>
-                        Senha
-                    </mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="password1" required>
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                    <mat-error *ngIf="formRegister.controls.password1.hasError('required')">
-                        Campo obrigatório
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>
-                        Confirmar Senha
-                    </mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Confirmar enha" formControlName="password2" required>
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                    <mat-error *ngIf="formRegister.controls.password2.hasError('required')">
-                        Campo obrigatório
-                    </mat-error>
-                </mat-form-field>
-                <!-- <mat-checkbox style="color: #A8A8A8;">Lembrar minha senha</mat-checkbox> -->
-                <div class="buttons-style">
-                    <button mat-button class="criar-conta" [routerLink]="['/login']">Cancelar</button>
-                    <button mat-button class="main-button" type="submit" [disabled]="!formRegister.valid">Acessar</button>
-                </div>
-            </form>
-        </div>
+    <div>
+        <mat-label>
+            <a [routerLink]="['/login']">
+                <img src="assets/logo-medicar.svg" />
+            </a><br>
+            <span class="fontSpan">Crie sua conta</span>
+        </mat-label>
+        <form [formGroup]="formRegister" style="width: 100%;">
+            <ng-template>Username</ng-template>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Nome
+                </mat-label>
+                <input matInput placeholder="Nome" formControlName="username" required>
+                <mat-error *ngIf="formRegister.controls.username.hasError('required')">
+                    Campo obrigatório
+                </mat-error>
+            </mat-form-field><br>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Email
+                </mat-label>
+                <input matInput placeholder="Email" formControlName="email" required>
+                <mat-error *ngIf="formRegister.controls.email.hasError('required')">
+                    Campo obrigatório
+                </mat-error>
+                <mat-error *ngIf="formRegister.controls.email.hasError('email')">
+                    Email inválido
+                </mat-error>
+            </mat-form-field><br>
+            <ng-template>Senha</ng-template>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Senha
+                </mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="password1" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="formRegister.controls.password1.hasError('required')">
+                    Campo obrigatório
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>
+                    Confirmar Senha
+                </mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="Confirmar enha" formControlName="password2" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error style="margin-bottom: 5px;" *ngIf="formRegister.controls.password2.hasError('required')">
+                    Campo obrigatório
+                </mat-error>
+            </mat-form-field>
+            <div style="margin-top: 20px;">
+                <mat-checkbox formControlName="savePass" style="color: #A8A8A8;">Lembrar minha senha</mat-checkbox>
+            </div>
+            <div class="buttons-style">
+                <button mat-button class="criar-conta" [routerLink]="['/login']">Cancelar</button>
+                <button mat-button class="main-button" type="submit" [disabled]="!formRegister.valid">Acessar</button>
+            </div>
+        </form>
     </div>
 </div>
