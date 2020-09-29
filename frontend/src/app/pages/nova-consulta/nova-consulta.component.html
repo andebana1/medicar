@@ -2,16 +2,53 @@
     <div class="container-column">
         <div>
             <mat-label>
-                <span>Nova Consulta</span>
+                <span style="color: black; font-weight: bold; font-size: 18px;">Nova Consulta</span>
                 <form [formGroup]="formConsulta">
                     <mat-form-field appearance="outline">
                         <mat-label>
                             Especialidade
                         </mat-label>
-                        <mat-select>
-                            <mat-option>None</mat-option>
+                        <mat-select formControlName="especialidade">
+                            <!-- <mat-option>None</mat-option> -->
+                            <mat-option *ngFor="let especialidade of especialidades" [value]="especialidade.id">
+                                {{especialidade.especialidade}}
+                            </mat-option>
                         </mat-select>
-                    </mat-form-field>                    
+                    </mat-form-field><br>               
+                    <mat-form-field appearance="outline">
+                        <mat-label>
+                            Médico
+                        </mat-label>
+                        <mat-select [disabled]="especialidadeValida(this.formConsulta.controls.especialidade)" formControlName="medico">
+                            <mat-option *ngFor="let medico of medicos" [value]="medico.id">
+                                {{medico.nome}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field><br>           
+                    <mat-form-field appearance="outline">
+                        <mat-label>
+                            Data
+                        </mat-label>
+                        <mat-select [disabled]="especialidadeValida(formConsulta.controls.medico)" formControlName="data">
+                            <mat-option *ngFor="let data of datas" [value]="data">
+                                {{data}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field><br>             
+                    <mat-form-field appearance="outline">
+                        <mat-label>
+                            Hora
+                        </mat-label>
+                        <mat-select  [disabled]="especialidadeValida(this.formConsulta.controls.data)" formControlName="hora">
+                            <mat-option *ngFor="let horario of horarios" [value]="horario">
+                                {{horario}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field><br>
+                    <div class="buttons">
+                        <button mat-button (click)="cancelConsulta()" class="btnCanc">Cancelar</button>    
+                        <button mat-button [disabled]="!formConsulta.valid" (click)="createConsulta()" class="btnConf">Confirmar</button>    
+                    </div>
                 </form>
             </mat-label>
         </div>

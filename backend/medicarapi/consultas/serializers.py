@@ -7,13 +7,13 @@ from django.forms.models import model_to_dict
 
 class ConsultaSerializer(serializers.ModelSerializer):
     horario = serializers.TimeField(format='%H:%M')
-    data_agendamento = serializers.DateTimeField(format="iso-8601")
+    data_agendamento = serializers.DateTimeField(format="iso-8601", read_only=True)
     class Meta:
         model = Consulta
         fields = '__all__'
         extra_kwargs = {
             'agenda': {'write_only': True},
-            'usuario': {'write_only': True}
+            'usuario': {'write_only': True},
         }
 
     def validate_dia(self, value):

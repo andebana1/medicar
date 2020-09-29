@@ -30,6 +30,16 @@ export class UserService {
     return this.http.post(environment.API + '/o/token/', credentials, this.noAuthHeader);
   }
 
+  logout(){
+    const body = {
+      token: this.getToken(),
+      client_id: environment.client_id,
+      client_secret: environment.client_secret
+    }
+
+    return this.http.post(environment.API + '/o/revoke_token/', body, this.noAuthHeader);
+  }
+
   setToken(token_payload: any){
     return localStorage.setItem('token', JSON.stringify(token_payload));
   }
@@ -47,7 +57,7 @@ export class UserService {
   }
 
   deleteToken(){
-    localStorage.removeItem('token');
+    return localStorage.removeItem('token');
   }
 
   isLoggedIn(){
