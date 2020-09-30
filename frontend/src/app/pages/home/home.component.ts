@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   public tableHeaders: string[] = ['especialidade', 'nome', 'dia', 'horario', 'button'];
   public groupedColumns: string[] = ['grouped'];
   public tableData: any[] = [];
+  public username: string = '';
 
   constructor(
     private opService: OperationsService, 
@@ -23,6 +24,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getConsultas();
+    this.getUser();
+  }
+
+  getUser(){
+    this.userService.getUser().subscribe(response=>{
+      this.userService.setUserData(response);
+      this.username = this.userService.getUserName();
+    });
   }
 
   getConsultas(){

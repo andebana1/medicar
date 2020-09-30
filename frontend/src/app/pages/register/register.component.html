@@ -35,11 +35,11 @@
                 <mat-label>
                     Senha
                 </mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="password1" required>
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="password" required>
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
-                <mat-error *ngIf="formRegister.controls.password1.hasError('required')">
+                <mat-error *ngIf="formRegister.controls.password.hasError('required')">
                     Campo obrigatório
                 </mat-error>
             </mat-form-field>
@@ -55,12 +55,16 @@
                     Campo obrigatório
                 </mat-error>
             </mat-form-field>
-            <div style="margin-top: 20px;">
-                <mat-checkbox formControlName="savePass" style="color: #A8A8A8;">Lembrar minha senha</mat-checkbox>
-            </div>
             <div class="buttons-style">
                 <button mat-button class="criar-conta" [routerLink]="['/login']">Cancelar</button>
-                <button mat-button class="main-button" type="submit" [disabled]="!formRegister.valid">Acessar</button>
+                <button 
+                    mat-button 
+                    class="main-button" 
+                    type="submit" 
+                    [disabled]="!formRegister.valid" 
+                    (click)="createUser()">
+                        Confirmar
+                    </button>
             </div>
         </form>
     </div>

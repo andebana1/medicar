@@ -37,6 +37,8 @@ export class UserService {
       client_secret: environment.client_secret
     }
 
+    this.deleteUserData();
+
     return this.http.post(environment.API + '/o/revoke_token/', body, this.noAuthHeader);
   }
 
@@ -60,6 +62,18 @@ export class UserService {
     return localStorage.removeItem('token');
   }
 
+  setUserData(data: any){
+    return localStorage.setItem('user', JSON.stringify(data));
+  }
+
+  getUserName(){
+    return JSON.parse(localStorage.getItem('user')).username;
+  }
+
+  deleteUserData(){
+    return localStorage.removeItem('user');
+  }
+
   isLoggedIn(){
     let tokenPayload = this.getTokenPayload();
     if(tokenPayload){
@@ -67,5 +81,25 @@ export class UserService {
     }else{
       return false;
     }
+  }
+
+  createUser(formdata: any){
+    return this.http.post(environment.API + '/user/register/', formdata, this.noAuthHeader);
+  }
+
+  getUser(){
+    return this.http.get(environment.API + '/user/');
+  }
+
+  saveCredentials(credentials: any){
+    return localStorage.setItem('credentials', JSON.stringify(credentials));
+  }
+
+  getCredentials(){
+    return JSON.parse(localStorage.getItem('credentials'));    
+  }
+
+  deleteCredentials(){
+    return localStorage.removeItem('credentials');
   }
 }

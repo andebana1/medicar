@@ -27,7 +27,9 @@
                     Campo obrigatório
                 </mat-error>
             </mat-form-field>
-            <!-- <mat-checkbox style="color: #A8A8A8;">Lembrar minha senha</mat-checkbox> -->
+            <div style="margin-top: 20px;">
+                <mat-checkbox formControlName="savePass" style="color: #A8A8A8;">Lembrar minha senha</mat-checkbox>
+            </div>
             <div class="buttons-style">
                 <button mat-button class="criar-conta" [routerLink]="['/register']">Criar Conta</button>
                 <button mat-button class="main-button" (click)="login()" type="submit" [disabled]="!formLogin.valid">Acessar</button>
