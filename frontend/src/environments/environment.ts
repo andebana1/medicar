@@ -4,8 +4,8 @@
 
 export const environment = {
   API: 'http://localhost:8000',
-  client_id: 'HuIRAYJ5tTXFAyoMfJr9kG4abzlWCSRlrXeVql7f',
-  client_secret: 'LxL4m0DpxLCWvtQMxGKFyASK8XfghockxylRuPZyw6T2ootBLyR3YpgpxhTKnMvvylcqP4I3uEdrG0V24sXc2NJONrFDhYTosOrlJcfYs8yrneDi2OwJ95vuuWk08zAG',
+  client_id: 'Ajf20mMcWvLNvwZAffHYXOpGdlKiD2hza9l1AGEE',
+  client_secret: 'Psb2oW8e29Sr6dqH0BODVju2b87eysCO2QugwLMNDXo6t8FUtOItrcFTH6zhXrfLUtwf6rSTKrfgblLdmAO3bziYUoi0XeawVhzFNc9agOtiSZb7wOCNgGGZA9j9Gjvz',
   grant_type: 'password',
   scope: 'read write',
   production: false

@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
 
   initForms() {
     this.formLogin = this._fb.group({
-      username: [this.credentials !== undefined ? this.credentials.username : '', Validators.required],
-      password: [this.credentials !== undefined ? this.credentials.password : '', Validators.required],
-      savePass: new FormControl(this.credentials !== undefined ? true : false),
+      username: [this.credentials !== null ? this.credentials.username : '', Validators.required],
+      password: [this.credentials !== null ? this.credentials.password : '', Validators.required],
+      savePass: new FormControl(this.credentials !== null ? true : false),
     });
   }
 

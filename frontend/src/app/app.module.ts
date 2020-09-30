@@ -16,6 +16,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { RegisterComponent } from './pages/register/register.component';
 import { NovaConsultaComponent } from './pages/nova-consulta/nova-consulta.component';
+import { AnonGuard } from './auth/anon.guard';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,6 @@ import { NovaConsultaComponent } from './pages/nova-consulta/nova-consulta.compo
       multi: true
     }
   ],
-  bootstrap: [AppComponent, AuthGuard]
+  bootstrap: [AppComponent, AuthGuard, AnonGuard]
 })
 export class AppModule { }

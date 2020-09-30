@@ -49,7 +49,9 @@ export class RegisterComponent implements OnInit {
             'Usuário criado com sucesso',
             'O seu usuário foi criado com sucesso. Utilize o e-mail informado para logar.',
             'success'
-          );  
+          ).then(data=>{
+            this.router.navigateByUrl('/login');
+          });  
         }, erro => {
           Swal.fire(
             'Erro ao criar usuário',

@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from register.models import User
 from medicarapi.agendas.models import Agenda
 from medicarapi.medicos.models import Medico
 from django.utils.translation import ugettext_lazy as _

@@ -7,9 +7,9 @@
             <ng-template>Username</ng-template>
             <mat-form-field appearance="outline">
                 <mat-label>
-                    E-mail ou login
+                    E-mail
                 </mat-label>
-                <input matInput placeholder="E-mail ou login" formControlName="username" required>
+                <input matInput placeholder="E-mail" formControlName="username" required>
                 <mat-error *ngIf="formLogin.controls.username.hasError('required')">
                     Campo obrigatório
                 </mat-error>

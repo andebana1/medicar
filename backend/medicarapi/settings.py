@@ -45,12 +45,14 @@ INSTALLED_APPS = [
     'medicarapi.medicos',
     'medicarapi.agendas',
     'medicarapi.consultas',
-    'medicarapi.register',
+    'register',
     #third party packages
     'rest_framework',
     'oauth2_provider',
     'localflavor',
 ]
+
+AUTH_USER_MODEL = "register.User"
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
