@@ -5,6 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from '../shared/user.service';
 import { tap } from 'rxjs/operators';
@@ -12,7 +13,21 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
+
+  // tryRefreshToken(){
+  //   let result: boolean;
+  //   this.userService.refreshUser().subscribe(
+  //     response=>{
+  //       this.userService.setToken(response);
+  //       result = true;
+  //     }, erro=>{
+  //       result = false;
+  //     }
+  //   );
+
+  //   return result
+  // }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if(request.headers.get('no-auth-required')){
@@ -29,9 +44,20 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(clonedHeaders)
         .pipe(
           tap(
-            ev => {},
-            err=>{
-              console.log(err);
+            ev => {
+              return ev;
+            },
+            async err=>{
+              if(err.status === 401 && this.userService.isLoggedIn()){
+                const result = await this.userService.refreshUser();
+                if(result){
+                  this.router.navigateByUrl('/home');
+                }else{
+                  this.userService.deleteToken();
+                  this.userService.deleteUserData();
+                  this.router.navigateByUrl('/login');
+                }
+              }
             }
           )
         );

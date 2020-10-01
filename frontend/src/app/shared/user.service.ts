@@ -54,6 +54,10 @@ export class UserService {
     return JSON.parse(localStorage.getItem('token')).token_type;
   }
 
+  getRefreshToken(){
+    return JSON.parse(localStorage.getItem('token')).refresh_token;
+  }
+
   getTokenPayload(){
     return JSON.parse(localStorage.getItem('token'));
   }
@@ -101,5 +105,27 @@ export class UserService {
 
   deleteCredentials(){
     return localStorage.removeItem('credentials');
+  }
+
+  async refreshUser() : Promise<boolean>{
+    let result: boolean = false;
+    const refreshToken = this.getRefreshToken();
+    const body = {
+      grant_type: "refresh_token",
+      client_id: environment.client_id,
+      client_secret: environment.client_secret,
+      refresh_token: refreshToken
+    };
+
+    await this.http.post(environment.API + '/o/token/', body, this.noAuthHeader)
+      .toPromise()
+      .then(response=>{
+        this.setToken(response);
+        result = true;
+      }, erro=>{
+        result = false;
+      });
+
+      return result;
   }
 }
