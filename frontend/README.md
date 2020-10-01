@@ -1,27 +1,12 @@
-# Medicar
+# Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Siga os passos abaixo para configurar o frontend da Medicar.
 
-## Code scaffolding
+  - ``npm install npm install -g @angular/cli@10.1.3`` para instalar exatamente a mesma versão utilizada no desenvolvimento do projeto.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  - Dentro do diretório frontend, execute o comando ``npm install`` e aguarde até que todas as dependências sejam instaladas.
+  - No arquivo ``/src/environments/environments.ts``. Nesse arquivo, altere os campos "client_id" e "client_secret" para os que foram gerados ao criar a aplicação no setup do backend. Se não sabe o que são essas chaves, volte ao READEME do backend.
+  - Os demais valores não precisam ser alterados, a não ser que a porta que esteja executando o Django seja diferente, se for esse o caso, altere o valor na variável ``API``, após ``http://localhost:``. Feito isso, o app já pode ser testado. Execute ``ng serve`` e começe a usar a aplicação.
