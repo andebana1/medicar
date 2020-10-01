@@ -2,7 +2,7 @@
 
 Aplicação para consultas médicas
 
-A aplicação está dividida em 2 diretórios: [Frontend](https://github.com/andebana1/medicar/tree/master/frontend) e [backend](https://github.com/andebana1/medicar/tree/master/backend). Em casa um desses diretório desses, haverá outro README ensinando como fazer com que o projeto funcione.
+A aplicação está dividida em 2 diretórios: [Frontend](https://github.com/andebana1/medicar/tree/master/frontend) e [backend](https://github.com/andebana1/medicar/tree/master/backend). Em cada um desses diretórios, haverá outro README ensinando como fazer o setup dos projetos Recomendo iniciar pelo Backend.
 
 ## Pré-requisitos
 
